@@ -28,7 +28,6 @@ function App({ Component, pageProps }: AppProps<{}>) {
     }, []);
 
     if (!isLoggedIn) {
-        console.log(PUBLIC_USERNAME,PUBLIC_PASSWORD)
         // If the user is not logged in, show the login form
         return (
             <LoginForm
