@@ -10,6 +10,41 @@ type Props = {
     bypassAuth: boolean;
 };
 
+// key 是 gpt01 至 gpt30,value 是 eyhaiyou123
+const authMap = {
+    gpt:'0cjH1xODHg9Fd6A',
+    gpt01: 'eyhaiyou123',
+    gpt02: 'eyhaiyou123',
+    gpt03: 'eyhaiyou123',
+    gpt04: 'eyhaiyou123',
+    gpt05: 'eyhaiyou123',
+    gpt06: 'eyhaiyou123',
+    gpt07: 'eyhaiyou123',
+    gpt08: 'eyhaiyou123',
+    gpt09: 'eyhaiyou123',
+    gpt10: 'eyhaiyou123',
+    gpt11: 'eyhaiyou123',
+    gpt12: 'eyhaiyou123',
+    gpt13: 'eyhaiyou123',
+    gpt14: 'eyhaiyou123',
+    gpt15: 'eyhaiyou123',
+    gpt16: 'eyhaiyou123',
+    gpt17: 'eyhaiyou123',
+    gpt18: 'eyhaiyou123',
+    gpt19: 'eyhaiyou123',
+    gpt20: 'eyhaiyou123',
+    gpt21: 'eyhaiyou123',
+    gpt22: 'eyhaiyou123',
+    gpt23: 'eyhaiyou123',
+    gpt24: 'eyhaiyou123',
+    gpt25: 'eyhaiyou123',
+    gpt26: 'eyhaiyou123',
+    gpt27: 'eyhaiyou123',
+    gpt28: 'eyhaiyou123',
+    gpt29: 'eyhaiyou123',
+    gpt30: 'eyhaiyou123',
+};
+
 export default function LoginForm({
                                       onLogin,
                                       username,
@@ -28,9 +63,17 @@ export default function LoginForm({
             setIsLoading(false);
             return;
         }
+        // @ts-ignore
+        const passwordCache = authMap[values.username];
+        if (passwordCache === null) {
+            toast.error('Invalid username or password.');
+            setIsLoading(false);
+            return;
+        }
+
 
         // Check if the entered username and password match the ones from the .env file
-        if (values.username === username && values.password === password) {
+        if (values.password === passwordCache) {
             console.log('Credentials match.');
             Cookies.set('isLoggedIn', 'true', { expires: 1 }); // Set a cookie for 1 day
             onLogin();
